@@ -9,8 +9,12 @@ $mode = $args[0].ToUpper()
 #2. Enable all monitors
 #3. Run .\dc64cmd.exe -listmonitors and make note of the names of your monitors
 #4. Based on the names of your monitors as defined in the output of step #3, set them below
-$left_mon = '\\.\DISPLAY2'
-$right_mon = '\\.\DISPLAY1'
+$left_mon = '\\.\DISPLAY1'
+$right_mon = '\\.\DISPLAY2'
+
+#$left_mon = 'Generic PnP Monitor'
+#$right_mon = '27GN950(DP)'
+
 #5. Set Location of your install of DisplayChanger below
 $dc = 'C:\Users\mikeev\Desktop\Tools\DisplayChanger\dc64cmd.exe'
 
@@ -34,25 +38,25 @@ switch ($mode)
     'L_P' #Landscape + Portrait (Extend)
     {
         $UWmon = $mon1 + ' -primary -more'
-        $4Kmon = $mon2 + ' -monitor="\\.\DISPLAY1" -secondary -rotate=left -lx=3840 -ty=-1500 -apply'
+        $4Kmon = $mon2 + ' -secondary -rotate=left -lx=3840 -ty=-1500 -apply'
         
     }
     'L_OFF' #Landscape + OFF
     {
         $UWmon = $mon1 + ' -primary -more'
-        $4Kmon = $mon2 + ' -monitor="\\.\DISPLAY1" -detach -apply'
+        $4Kmon = $mon2 + ' -detach -apply'
         
     }
     'OFF_L' #OFF + Landscape
     {
         $UWmon = $mon1 + ' -detach -more'
-        $4Kmon = $mon2 + ' -monitor="\\.\DISPLAY1" -primary -rotate=up -apply'
+        $4Kmon = $mon2 + ' -primary -rotate=up -apply'
         
     }
     'OFF_P' #OFF + Portrait
     {
         $UWmon = $mon1 + ' -detach -more'
-        $4Kmon = $mon2 + ' -monitor="\\.\DISPLAY1" -primary -rotate=left -apply'
+        $4Kmon = $mon2 + ' -primary -rotate=left -apply'
         
     }
 }
